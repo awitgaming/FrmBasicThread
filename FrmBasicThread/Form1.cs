@@ -5,14 +5,16 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace FrmBasicThread
 {
-    public partial class Form1 : Form
+    public partial class frmBasicThread : Form
     {
-        public Form1()
+       
+        public frmBasicThread()
         {
             InitializeComponent();
         }
@@ -24,6 +26,26 @@ namespace FrmBasicThread
 
         private void label1_Click(object sender, EventArgs e)
         {
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
+            Thread ThreadA = new Thread(MyThreadClass.Thread1);
+            Thread ThreadB = new Thread(MyThreadClass.Thread1);
+            ThreadA.Start();
+            ThreadB.Start();
+
+            ThreadA.Name = "Thread A";
+            ThreadB.Name = "Thread B";
+
+            ThreadA.Join();
+            ThreadB.Join();
+
+            lblShow.Text = "     -End of Thread-";
+            Console.WriteLine("-End Of Thread-");
+
 
         }
     }
